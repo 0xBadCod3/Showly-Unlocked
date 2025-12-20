@@ -2,6 +2,7 @@ package com.michaldrabik.ui_settings.helpers
 
 import androidx.annotation.StringRes
 import com.michaldrabik.ui_settings.R
+import timber.log.Timber
 
 enum class AppLanguage(
   val code: String,
@@ -15,6 +16,7 @@ enum class AppLanguage(
   ITALIAN("it", "Italian", R.string.textLanguageItalian),
   SPANISH("es", "Spanish", R.string.textLanguageSpanish),
   PORTUGAL_BRASIL("pt", "Portuguese", R.string.textLanguagePortugalBrasil),
+  ROMANIAN("ro", "Romanian", R.string.textLanguageRomanian),
   POLISH("pl", "Polish", R.string.textLanguagePolish),
   RUSSIAN("ru", "Russian", R.string.textLanguageRussian),
   UKRAINIAN("uk", "Ukrainian", R.string.textLanguageUkrainian),
@@ -25,6 +27,9 @@ enum class AppLanguage(
   ;
 
   companion object {
-    fun fromCode(code: String) = values().first { it.code == code }
+    fun fromCode(code: String): AppLanguage {
+      Timber.d("Looking for AppLanguage with code: $code")
+      return entries.firstOrNull { it.code == code } ?: ENGLISH
+    }
   }
 }

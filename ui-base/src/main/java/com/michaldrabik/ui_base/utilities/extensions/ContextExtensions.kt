@@ -4,7 +4,6 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.res.ColorStateList
-import android.content.res.Configuration
 import android.util.TypedValue
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
@@ -12,7 +11,6 @@ import androidx.annotation.DimenRes
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import com.michaldrabik.ui_base.R
-import java.util.Locale
 
 fun Context.isTablet() = resources.getBoolean(R.bool.isTablet)
 
@@ -37,17 +35,6 @@ fun Context.colorStateListFromAttr(
   typedValue: TypedValue = TypedValue(),
   resolveRefs: Boolean = true,
 ): ColorStateList = ColorStateList.valueOf(colorFromAttr(attrColor, typedValue, resolveRefs))
-
-fun Context.getLocaleStringResource(
-  requestedLocale: Locale?,
-  resourceId: Int,
-): String {
-  val result: String
-  val config = Configuration(resources.configuration)
-  config.setLocale(requestedLocale)
-  result = createConfigurationContext(config).getText(resourceId).toString()
-  return result
-}
 
 fun Context.copyToClipboard(text: String) {
   val clip = ClipData.newPlainText("label", text)
