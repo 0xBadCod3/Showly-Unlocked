@@ -155,8 +155,12 @@ class HiddenFragment :
                   LIST_NORMAL -> if (isTablet) tabletGridSpanSize else LISTS_GRID_SPAN
                 }
               }
-              is ShowItem -> 1
-              else -> throw Error("Unsupported span size!")
+              is ShowItem -> {
+                1
+              }
+              else -> {
+                throw Error("Unsupported span size!")
+              }
             }
           }
           hiddenEmptyView.root.fadeIf(it.isEmpty() && !isSearching)

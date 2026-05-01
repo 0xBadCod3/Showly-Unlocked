@@ -115,7 +115,9 @@ class ProgressItemView : ShowView<ProgressListItem.Episode> {
       item.episode?.title == "Episode ${item.episode?.number}" -> {
         String.format(ENGLISH, context.getString(R.string.textEpisode), item.episode.number)
       }
-      else -> item.episode?.title
+      else -> {
+        item.episode?.title
+      }
     }
 
     if (item.spoilers?.isEpisodeTitleHidden == true) {

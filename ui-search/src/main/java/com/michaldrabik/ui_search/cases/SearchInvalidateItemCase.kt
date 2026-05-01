@@ -34,7 +34,9 @@ class SearchInvalidateItemCase @Inject constructor(
           )
           Pair(isMy, isWatchlist)
         }
-        else -> throw IllegalStateException()
+        else -> {
+          throw IllegalStateException()
+        }
       }
     }
 }

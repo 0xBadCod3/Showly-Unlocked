@@ -77,20 +77,24 @@ class MyShowsAdapter(
   ) {
     val item = asyncDiffer.currentList[position]
     when (holder.itemViewType) {
-      VIEW_TYPE_HEADER -> (holder.itemView as MyShowHeaderView).bind(
-        item = item.header!!,
-        viewMode = listViewMode,
-        typeClickListener = onTypeClickListener,
-        sortClickListener = onSortOrderClickListener,
-        networksClickListener = onNetworksClickListener,
-        genresClickListener = onGenresClickListener,
-        listModeClickListener = onListViewModeClickListener,
-      )
-      VIEW_TYPE_RECENTS_SECTION -> (holder.itemView as MyShowsRecentsView).bind(
-        item.recentsSection!!,
-        itemClickListener,
-        itemLongClickListener,
-      )
+      VIEW_TYPE_HEADER -> {
+        (holder.itemView as MyShowHeaderView).bind(
+          item = item.header!!,
+          viewMode = listViewMode,
+          typeClickListener = onTypeClickListener,
+          sortClickListener = onSortOrderClickListener,
+          networksClickListener = onNetworksClickListener,
+          genresClickListener = onGenresClickListener,
+          listModeClickListener = onListViewModeClickListener,
+        )
+      }
+      VIEW_TYPE_RECENTS_SECTION -> {
+        (holder.itemView as MyShowsRecentsView).bind(
+          item.recentsSection!!,
+          itemClickListener,
+          itemLongClickListener,
+        )
+      }
       VIEW_TYPE_SHOW_ITEM -> {
         when (listViewMode) {
           LIST_NORMAL -> (holder.itemView as MyShowAllView).bind(item)

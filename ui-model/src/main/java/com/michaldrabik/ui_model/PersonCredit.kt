@@ -20,14 +20,19 @@ data class PersonCredit(
 
   val releaseDate: LocalDate?
     get() = when {
-      show != null ->
+      show != null -> {
         if (show.firstAired.isNotBlank()) {
           ZonedDateTime.parse(show.firstAired).toLocalDate()
         } else {
           null
         }
-      movie != null -> movie.released
-      else -> null
+      }
+      movie != null -> {
+        movie.released
+      }
+      else -> {
+        null
+      }
     }
 
   val isUpcoming: Boolean
@@ -38,6 +43,8 @@ data class PersonCredit(
       movie != null -> {
         !movie.hasAired() && movie.status in arrayOf(RUMORED, PLANNED, IN_PRODUCTION, POST_PRODUCTION)
       }
-      else -> false
+      else -> {
+        false
+      }
     }
 }

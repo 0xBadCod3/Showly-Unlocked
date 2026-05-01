@@ -16,7 +16,9 @@ object ErrorHelper {
 
   fun parse(error: Throwable): ShowlyError =
     when (error) {
-      is ShowlyError -> error
+      is ShowlyError -> {
+        error
+      }
       is HttpException -> {
         when (error.code()) {
           in arrayOf(401, 403) -> UnauthorizedError(error.message)
@@ -28,7 +30,11 @@ object ErrorHelper {
           else -> UnknownHttpError(error.message)
         }
       }
-      is CancellationException -> CoroutineCancellation
-      else -> UnknownError(error.message)
+      is CancellationException -> {
+        CoroutineCancellation
+      }
+      else -> {
+        UnknownError(error.message)
+      }
     }
 }

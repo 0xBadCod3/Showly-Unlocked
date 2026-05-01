@@ -133,7 +133,9 @@ class QuickSyncListsRunner @Inject constructor(
           localSource.traktSyncQueue.delete(removeItems)
           Timber.d("Tried to remove from list but it does not exist anymore. Skipping...")
         }
-        else -> throw error
+        else -> {
+          throw error
+        }
       }
     }
   }
@@ -168,7 +170,9 @@ class QuickSyncListsRunner @Inject constructor(
           createMissingList(localList, addItems)
           localSource.traktSyncQueue.delete(addItems)
         }
-        else -> throw error
+        else -> {
+          throw error
+        }
       }
     }
   }
@@ -199,7 +203,9 @@ class QuickSyncListsRunner @Inject constructor(
           localSource.traktSyncQueue.delete(addItems)
           throw error
         }
-        else -> throw error
+        else -> {
+          throw error
+        }
       }
     }
   }

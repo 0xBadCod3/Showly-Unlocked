@@ -52,10 +52,12 @@ class DiscoverMoviesAdapter(
   ) {
     val item = asyncDiffer.currentList[position]
     when (holder.itemViewType) {
-      POSTER.id ->
+      POSTER.id -> {
         (holder.itemView as MoviePosterView).bind(item)
-      FANART.id, FANART_WIDE.id ->
+      }
+      FANART.id, FANART_WIDE.id -> {
         (holder.itemView as MovieFanartView).bind(item)
+      }
     }
   }
 

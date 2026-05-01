@@ -150,14 +150,22 @@ class ShowDetailsSeasonsFragment : BaseFragment<ShowDetailsSeasonsViewModel>(R.l
 
   private fun handleEvent(event: ShowDetailsSeasonsEvent<*>) {
     when (event) {
-      is RemoveFromTrakt -> openRemoveTraktSheet(event)
-      is OpenSeasonDateSelection -> openDateSelectionDialog(event.season)
-      is OpenQuickProgressDateSelection -> openDateSelectionDialog(event.item)
+      is RemoveFromTrakt -> {
+        openRemoveTraktSheet(event)
+      }
+      is OpenSeasonDateSelection -> {
+        openDateSelectionDialog(event.season)
+      }
+      is OpenQuickProgressDateSelection -> {
+        openDateSelectionDialog(event.item)
+      }
       is OpenSeasonEpisodes -> {
         val bundle = ShowDetailsEpisodesFragment.createBundle(event.showId, event.seasonId)
         navigateToSafe(R.id.actionShowDetailsFragmentToEpisodes, bundle)
       }
-      is RequestWidgetsUpdate -> (requireAppContext() as WidgetsProvider).requestShowsWidgetsUpdate()
+      is RequestWidgetsUpdate -> {
+        (requireAppContext() as WidgetsProvider).requestShowsWidgetsUpdate()
+      }
     }
   }
 

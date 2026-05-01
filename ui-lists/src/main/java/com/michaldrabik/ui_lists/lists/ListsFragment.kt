@@ -398,7 +398,9 @@ class ListsFragment :
         binding.fragmentListsSnackHost.showInfoSnackbar(text)
       }
 
-      else -> Unit
+      else -> {
+        Unit
+      }
     }
   }
 

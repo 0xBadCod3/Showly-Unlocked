@@ -46,13 +46,16 @@ class ShowImagesProvider @Inject constructor(
     withContext(dispatchers.IO) {
       val image = localSource.showImages.getByShowId(show.ids.tmdb.id, type.key)
       when (image) {
-        null ->
+        null -> {
           if (unavailableCache.contains(show.ids.trakt)) {
             Image.createUnavailable(type, SHOW)
           } else {
             Image.createUnknown(type, SHOW)
           }
-        else -> mappers.image.fromDatabase(image).copy(type = type)
+        }
+        else -> {
+          mappers.image.fromDatabase(image).copy(type = type)
+        }
       }
     }
 

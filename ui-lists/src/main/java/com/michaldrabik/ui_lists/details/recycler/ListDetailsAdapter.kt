@@ -93,7 +93,9 @@ class ListDetailsAdapter(
         itemSwipeStartListener,
       )
     }
-    else -> throw IllegalStateException()
+    else -> {
+      throw IllegalStateException()
+    }
   }
 
   override fun onBindViewHolder(

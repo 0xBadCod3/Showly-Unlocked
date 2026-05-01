@@ -127,7 +127,9 @@ class SettingsRepository @Inject constructor(
         preferences.edit().putString(USER_ID, uuid).apply()
         uuid
       }
-      else -> id
+      else -> {
+        id
+      }
     }
 
   suspend fun clearLanguageLogs() {

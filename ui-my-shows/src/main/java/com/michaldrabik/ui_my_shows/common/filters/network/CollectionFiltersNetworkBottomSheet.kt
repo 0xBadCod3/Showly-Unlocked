@@ -133,7 +133,9 @@ internal class CollectionFiltersNetworkBottomSheet : BaseBottomSheetFragment(R.l
         setFragmentResult(REQUEST_COLLECTION_FILTERS_NETWORK, Bundle.EMPTY)
         closeSheet()
       }
-      is CloseFilters -> closeSheet()
+      is CloseFilters -> {
+        closeSheet()
+      }
     }
   }
 }

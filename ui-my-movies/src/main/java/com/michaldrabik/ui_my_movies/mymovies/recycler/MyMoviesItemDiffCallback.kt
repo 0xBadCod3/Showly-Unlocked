@@ -16,9 +16,13 @@ class MyMoviesItemDiffCallback : DiffUtil.ItemCallback<MyMoviesItem>() {
     oldItem: MyMoviesItem,
     newItem: MyMoviesItem,
   ) = when (oldItem.type) {
-    MyMoviesItem.Type.HEADER -> oldItem.header == newItem.header
-    MyMoviesItem.Type.RECENT_MOVIES -> oldItem.recentsSection == newItem.recentsSection
-    else ->
+    MyMoviesItem.Type.HEADER -> {
+      oldItem.header == newItem.header
+    }
+    MyMoviesItem.Type.RECENT_MOVIES -> {
+      oldItem.recentsSection == newItem.recentsSection
+    }
+    else -> {
       oldItem.image == newItem.image &&
         oldItem.isLoading == newItem.isLoading &&
         oldItem.translation == newItem.translation &&
@@ -26,5 +30,6 @@ class MyMoviesItemDiffCallback : DiffUtil.ItemCallback<MyMoviesItem>() {
         oldItem.userRating == newItem.userRating &&
         oldItem.sortOrder == newItem.sortOrder &&
         oldItem.dateFormat.toString() == newItem.dateFormat.toString()
+    }
   }
 }

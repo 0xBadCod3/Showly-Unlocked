@@ -149,7 +149,9 @@ class ListDetailsItemsCase @Inject constructor(
                   spoilers = spoilers,
                 )
               }
-              else -> throw IllegalStateException("Unsupported list item type.")
+              else -> {
+                throw IllegalStateException("Unsupported list item type.")
+              }
             }
           }
         }.awaitAll()

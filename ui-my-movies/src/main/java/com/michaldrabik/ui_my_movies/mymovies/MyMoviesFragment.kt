@@ -153,8 +153,12 @@ class MyMoviesFragment :
                   LIST_NORMAL -> if (isTablet) gridSpanSize else LISTS_GRID_SPAN
                 }
               }
-              ALL_MOVIES_ITEM -> 1
-              null -> throw Error("Unsupported span size!")
+              ALL_MOVIES_ITEM -> {
+                1
+              }
+              null -> {
+                throw Error("Unsupported span size!")
+              }
             }
           }
           myMoviesEmptyView.root.fadeIf(showEmptyView && !isSearching)

@@ -17,17 +17,30 @@ enum class ShowLink {
     id: String,
     country: AppCountry,
   ) = when (this) {
-    IMDB -> "https://www.imdb.com/title/$id"
-    TRAKT -> "https://trakt.tv/search/trakt/$id?id_type=show"
-    TVDB -> "https://www.thetvdb.com/?id=$id&tab=series"
-    TMDB -> "https://www.themoviedb.org/tv/$id"
-    METACRITIC -> "https://www.metacritic.com/search/$id?category=1"
-    ROTTEN -> "https://www.rottentomatoes.com/search?search=$id"
-    JUST_WATCH ->
+    IMDB -> {
+      "https://www.imdb.com/title/$id"
+    }
+    TRAKT -> {
+      "https://trakt.tv/search/trakt/$id?id_type=show"
+    }
+    TVDB -> {
+      "https://www.thetvdb.com/?id=$id&tab=series"
+    }
+    TMDB -> {
+      "https://www.themoviedb.org/tv/$id"
+    }
+    METACRITIC -> {
+      "https://www.metacritic.com/search/$id?category=1"
+    }
+    ROTTEN -> {
+      "https://www.rottentomatoes.com/search?search=$id"
+    }
+    JUST_WATCH -> {
       "https://www.justwatch.com/${country.code}/${country.justWatchQuery}?content_type=show&q=${
         Uri.encode(
           id,
         )
       }"
+    }
   }
 }

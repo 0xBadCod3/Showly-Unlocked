@@ -79,7 +79,9 @@ class MyShowsLoadShowsCase @Inject constructor(
             type.allowedStatuses.contains(showItem.show.status) ||
               (showItem.show.status == RETURNING && airedSeasons.all { it.isWatched })
           }
-          else -> true
+          else -> {
+            true
+          }
         }
       }
 

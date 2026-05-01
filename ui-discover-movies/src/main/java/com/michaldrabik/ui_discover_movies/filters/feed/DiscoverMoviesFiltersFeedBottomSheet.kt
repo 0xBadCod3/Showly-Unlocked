@@ -94,7 +94,9 @@ internal class DiscoverMoviesFiltersFeedBottomSheet :
         setFragmentResult(REQUEST_DISCOVER_FILTERS, Bundle.EMPTY)
         closeSheet()
       }
-      is CloseFilters -> closeSheet()
+      is CloseFilters -> {
+        closeSheet()
+      }
     }
   }
 }

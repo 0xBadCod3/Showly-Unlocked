@@ -149,10 +149,12 @@ class CommentsFragment : BaseFragment<CommentsViewModel>(R.layout.fragment_comme
     }
 
     val bundle = when {
-      comment != null -> bundleOf(
-        ARG_COMMENT_ID to comment.getReplyId(),
-        ARG_REPLY_USER to comment.user.username,
-      )
+      comment != null -> {
+        bundleOf(
+          ARG_COMMENT_ID to comment.getReplyId(),
+          ARG_REPLY_USER to comment.user.username,
+        )
+      }
       else -> {
         val (id, mode) = requireParcelable<Options>(ARG_OPTIONS)
         when (mode) {

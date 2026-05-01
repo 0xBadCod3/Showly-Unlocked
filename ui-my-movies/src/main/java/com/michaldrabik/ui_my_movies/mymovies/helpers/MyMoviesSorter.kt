@@ -29,32 +29,62 @@ class MyMoviesSorter @Inject constructor() {
 
   private fun sortAscending(sortOrder: SortOrder) =
     when (sortOrder) {
-      NAME -> compareBy { getTitle(it) }
-      RATING -> compareBy { it.movie.rating }
-      USER_RATING ->
+      NAME -> {
+        compareBy { getTitle(it) }
+      }
+      RATING -> {
+        compareBy { it.movie.rating }
+      }
+      USER_RATING -> {
         compareByDescending<MyMoviesItem> { it.userRating != null }
           .thenBy { it.userRating }
           .thenBy { getTitle(it) }
-      DATE_ADDED -> compareBy { it.movie.updatedAt }
-      RUNTIME -> compareBy { it.movie.runtime }
-      NEWEST -> compareBy<MyMoviesItem> { it.movie.year }.thenBy { it.movie.released }
-      RANDOM -> compareBy { UUID.randomUUID() }
-      else -> throw IllegalStateException("Invalid sort order")
+      }
+      DATE_ADDED -> {
+        compareBy { it.movie.updatedAt }
+      }
+      RUNTIME -> {
+        compareBy { it.movie.runtime }
+      }
+      NEWEST -> {
+        compareBy<MyMoviesItem> { it.movie.year }.thenBy { it.movie.released }
+      }
+      RANDOM -> {
+        compareBy { UUID.randomUUID() }
+      }
+      else -> {
+        throw IllegalStateException("Invalid sort order")
+      }
     }
 
   private fun sortDescending(sortOrder: SortOrder) =
     when (sortOrder) {
-      NAME -> compareByDescending { getTitle(it) }
-      RATING -> compareByDescending { it.movie.rating }
-      USER_RATING ->
+      NAME -> {
+        compareByDescending { getTitle(it) }
+      }
+      RATING -> {
+        compareByDescending { it.movie.rating }
+      }
+      USER_RATING -> {
         compareByDescending<MyMoviesItem> { it.userRating != null }
           .thenByDescending { it.userRating }
           .thenBy { getTitle(it) }
-      DATE_ADDED -> compareByDescending { it.movie.updatedAt }
-      RUNTIME -> compareByDescending { it.movie.runtime }
-      NEWEST -> compareByDescending<MyMoviesItem> { it.movie.year }.thenByDescending { it.movie.released }
-      RANDOM -> compareBy { UUID.randomUUID() }
-      else -> throw IllegalStateException("Invalid sort order")
+      }
+      DATE_ADDED -> {
+        compareByDescending { it.movie.updatedAt }
+      }
+      RUNTIME -> {
+        compareByDescending { it.movie.runtime }
+      }
+      NEWEST -> {
+        compareByDescending<MyMoviesItem> { it.movie.year }.thenByDescending { it.movie.released }
+      }
+      RANDOM -> {
+        compareBy { UUID.randomUUID() }
+      }
+      else -> {
+        throw IllegalStateException("Invalid sort order")
+      }
     }
 
   private fun getTitle(item: MyMoviesItem): String {

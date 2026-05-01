@@ -27,19 +27,23 @@ class ListDetailsTranslationsCase @Inject constructor(
         return@withContext Translation.EMPTY
       }
       when {
-        item.isShow() ->
+        item.isShow() -> {
           translationsRepository.loadTranslation(
             show = item.requireShow(),
             language = language,
             onlyLocal = onlyLocal,
           )
-        item.isMovie() ->
+        }
+        item.isMovie() -> {
           translationsRepository.loadTranslation(
             movie = item.requireMovie(),
             language = language,
             onlyLocal = onlyLocal,
           )
-        else -> throw IllegalStateException()
+        }
+        else -> {
+          throw IllegalStateException()
+        }
       }
     }
 }

@@ -31,6 +31,8 @@ class MyShowsSortingCase @Inject constructor(
       settingsRepository.sorting.myShowsAllSortOrder = sortOrder
       settingsRepository.sorting.myShowsAllSortType = sortType
     }
-    else -> error("Should not be used here.")
+    else -> {
+      error("Should not be used here.")
+    }
   }
 }

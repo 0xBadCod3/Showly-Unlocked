@@ -118,7 +118,9 @@ class TraktExportWatchlistRunner @Inject constructor(
         delay(RETRY_DELAY_MS)
         runExport()
       }
-      else -> throw error
+      else -> {
+        throw error
+      }
     }
   }
 }

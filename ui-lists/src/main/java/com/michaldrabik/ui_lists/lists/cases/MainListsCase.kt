@@ -95,6 +95,8 @@ class MainListsCase @Inject constructor(
           ListsItemImage(image, movie = movie)
         }
       }
-      else -> throw IllegalStateException()
+      else -> {
+        throw IllegalStateException()
+      }
     }
 }

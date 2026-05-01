@@ -66,15 +66,22 @@ class DiscoverMoviesFiltersView : FrameLayout {
     with(binding) {
       discoverMoviesGenresChip.isSelected = genres.isNotEmpty()
       discoverMoviesGenresChip.text = when {
-        genres.isEmpty() -> context.getString(R.string.textGenres).filter { it.isLetter() }
-        genres.size == 1 -> context.getString(genres.first().displayName)
-        genres.size == 2 -> "${context.getString(genres[0].displayName)}, ${context.getString(genres[1].displayName)}"
-        else ->
+        genres.isEmpty() -> {
+          context.getString(R.string.textGenres).filter { it.isLetter() }
+        }
+        genres.size == 1 -> {
+          context.getString(genres.first().displayName)
+        }
+        genres.size == 2 -> {
+          "${context.getString(genres[0].displayName)}, ${context.getString(genres[1].displayName)}"
+        }
+        else -> {
           "${
             context.getString(
               genres[0].displayName,
             )
           }, ${context.getString(genres[1].displayName)} + ${genres.size - 2}"
+        }
       }
     }
   }

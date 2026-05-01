@@ -18,14 +18,19 @@ class MyShowsItemDiffCallback : DiffUtil.ItemCallback<MyShowsItem>() {
     oldItem: MyShowsItem,
     newItem: MyShowsItem,
   ) = when (oldItem.type) {
-    ALL_SHOWS_HEADER -> oldItem.header == newItem.header
-    RECENT_SHOWS -> oldItem.recentsSection == newItem.recentsSection
-    else ->
+    ALL_SHOWS_HEADER -> {
+      oldItem.header == newItem.header
+    }
+    RECENT_SHOWS -> {
+      oldItem.recentsSection == newItem.recentsSection
+    }
+    else -> {
       oldItem.image == newItem.image &&
         oldItem.isLoading == newItem.isLoading &&
         oldItem.translation == newItem.translation &&
         oldItem.userRating == newItem.userRating &&
         oldItem.spoilers == newItem.spoilers &&
         oldItem.sortOrder == newItem.sortOrder
+    }
   }
 }

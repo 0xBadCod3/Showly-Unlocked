@@ -49,6 +49,8 @@ class PersonDetailsItemDiffCallback : DiffUtil.ItemCallback<PersonDetailsItem>()
     oldItem is PersonDetailsItem.CreditsHeader && newItem is PersonDetailsItem.CreditsHeader -> {
       oldItem.year == newItem.year
     }
-    else -> false
+    else -> {
+      false
+    }
   }
 }

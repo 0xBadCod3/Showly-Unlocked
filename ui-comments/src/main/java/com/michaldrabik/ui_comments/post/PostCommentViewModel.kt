@@ -129,13 +129,19 @@ class PostCommentViewModel @Inject constructor(
   private suspend fun handleError(error: Throwable) {
     loadingState.value = false
     when (ErrorHelper.parse(error)) {
-      is CoroutineCancellation -> rethrowCancellation(error)
-      is ValidationError -> messageChannel.send(MessageEvent.Error(R.string.errorCommentFormat))
+      is CoroutineCancellation -> {
+        rethrowCancellation(error)
+      }
+      is ValidationError -> {
+        messageChannel.send(MessageEvent.Error(R.string.errorCommentFormat))
+      }
       is UnauthorizedError -> {
         messageChannel.send(MessageEvent.Error(R.string.errorTraktAuthorization))
         userTraktManager.revokeToken()
       }
-      else -> messageChannel.send(MessageEvent.Error(R.string.errorGeneral))
+      else -> {
+        messageChannel.send(MessageEvent.Error(R.string.errorGeneral))
+      }
     }
   }
 

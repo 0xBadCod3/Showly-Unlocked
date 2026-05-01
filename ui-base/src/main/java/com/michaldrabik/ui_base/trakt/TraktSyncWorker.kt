@@ -345,7 +345,9 @@ class TraktSyncWorker @AssistedInject constructor(
         )
       }
 
-      else -> throw error
+      else -> {
+        throw error
+      }
     }
   }
 
@@ -377,7 +379,9 @@ class TraktSyncWorker @AssistedInject constructor(
         )
       }
 
-      else -> throw error
+      else -> {
+        throw error
+      }
     }
   }
 

@@ -125,7 +125,9 @@ internal class CollectionFiltersGenreBottomSheet : BaseBottomSheetFragment(R.lay
         setFragmentResult(REQUEST_COLLECTION_FILTERS_GENRE, Bundle.EMPTY)
         closeSheet()
       }
-      is CloseFilters -> closeSheet()
+      is CloseFilters -> {
+        closeSheet()
+      }
     }
   }
 }

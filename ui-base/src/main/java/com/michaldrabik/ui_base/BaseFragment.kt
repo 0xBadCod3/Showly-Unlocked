@@ -64,7 +64,9 @@ abstract class BaseFragment<T : ViewModel>(
         val action = if (message.isIndefinite) ({}) else null
         host.showInfoSnackbar(getString(message.textRestId), length = length, action = action)
       }
-      is MessageEvent.Error -> host.showErrorSnackbar(getString(message.textRestId))
+      is MessageEvent.Error -> {
+        host.showErrorSnackbar(getString(message.textRestId))
+      }
     }
   }
 

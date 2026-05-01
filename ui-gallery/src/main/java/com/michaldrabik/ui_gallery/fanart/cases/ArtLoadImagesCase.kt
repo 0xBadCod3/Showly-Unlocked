@@ -59,6 +59,8 @@ class ArtLoadImagesCase @Inject constructor(
       val movie = moviesRepository.movieDetails.load(id)
       movieImagesProvider.findCachedImage(movie, type)
     }
-    else -> throw IllegalStateException()
+    else -> {
+      throw IllegalStateException()
+    }
   }
 }

@@ -53,6 +53,8 @@ class TraktDeepLinkCase @Inject constructor(
         DeepLinkBundle.EMPTY
       }
     }
-    else -> DeepLinkBundle.EMPTY
+    else -> {
+      DeepLinkBundle.EMPTY
+    }
   }
 }

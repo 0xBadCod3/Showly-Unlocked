@@ -158,8 +158,12 @@ class MyShowsFragment :
                   LIST_NORMAL -> if (isTablet) tabletGridSpanSize else LISTS_GRID_SPAN
                 }
               }
-              ALL_SHOWS_ITEM -> 1
-              null -> throw Error("Unsupported span size!")
+              ALL_SHOWS_ITEM -> {
+                1
+              }
+              null -> {
+                throw Error("Unsupported span size!")
+              }
             }
           }
           myShowsEmptyView.root.fadeIf(showEmptyView && !isSearching)

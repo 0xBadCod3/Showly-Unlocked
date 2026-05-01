@@ -57,12 +57,15 @@ class DiscoverAdapter(
   ) {
     val item = asyncDiffer.currentList[position]
     when (holder.itemViewType) {
-      POSTER.id ->
+      POSTER.id -> {
         (holder.itemView as ShowPosterView).bind(item)
-      FANART.id, FANART_WIDE.id ->
+      }
+      FANART.id, FANART_WIDE.id -> {
         (holder.itemView as ShowFanartView).bind(item)
-      TWITTER.id ->
+      }
+      TWITTER.id -> {
         (holder.itemView as ShowTwitterView).bind(item)
+      }
     }
   }
 

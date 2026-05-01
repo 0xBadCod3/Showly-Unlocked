@@ -150,8 +150,12 @@ class HiddenFragment :
                 LIST_NORMAL -> if (isTablet) tabletGridSpanSize else Config.LISTS_GRID_SPAN
               }
             }
-            is MovieItem -> 1
-            else -> throw Error("Unsupported span size!")
+            is MovieItem -> {
+              1
+            }
+            else -> {
+              throw Error("Unsupported span size!")
+            }
           }
         }
 

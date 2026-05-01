@@ -123,7 +123,9 @@ class ShowDetailsViewModel @Inject constructor(
         Timber.e(error)
         progressJob.cancel()
         when (ErrorHelper.parse(error)) {
-          is CoroutineCancellation -> rethrowCancellation(error)
+          is CoroutineCancellation -> {
+            rethrowCancellation(error)
+          }
           is ResourceNotFoundError -> {
             // Malformed Trakt data or duplicate show.
             messageChannel.send(MessageEvent.Info(R.string.errorMalformedShow))
@@ -255,7 +257,9 @@ class ShowDetailsViewModel @Inject constructor(
             eventChannel.send(RemoveFromTrakt(R.id.actionShowDetailsFragmentToRemoveTraktHidden, mode, ids))
           }
         }
-        else -> error("Unexpected show state.")
+        else -> {
+          error("Unexpected show state.")
+        }
       }
     }
   }

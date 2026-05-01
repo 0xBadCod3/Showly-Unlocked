@@ -414,22 +414,29 @@ class MainActivity :
       is TraktSyncAuthError -> {
         provideSnackbarLayout().showErrorSnackbar(getString(R.string.errorTraktAuthorization))
       }
-      else -> Timber.d("Event ignored. Noop.")
+      else -> {
+        Timber.d("Event ignored. Noop.")
+      }
     }
   }
 
   private fun handleAppShortcut(intent: Intent?) {
     when {
-      intent == null -> return
+      intent == null -> {
+        return
+      }
 
-      intent.extras?.containsKey("extraShortcutProgress") == true ->
+      intent.extras?.containsKey("extraShortcutProgress") == true -> {
         binding.bottomMenuView.binding.bottomNavigationView.selectedItemId = R.id.menuProgress
+      }
 
-      intent.extras?.containsKey("extraShortcutDiscover") == true ->
+      intent.extras?.containsKey("extraShortcutDiscover") == true -> {
         binding.bottomMenuView.binding.bottomNavigationView.selectedItemId = R.id.menuDiscover
+      }
 
-      intent.extras?.containsKey("extraShortcutCollection") == true ->
+      intent.extras?.containsKey("extraShortcutCollection") == true -> {
         binding.bottomMenuView.binding.bottomNavigationView.selectedItemId = R.id.menuCollection
+      }
 
       intent.extras?.containsKey("extraShortcutSearch") == true -> {
         binding.bottomMenuView.binding.bottomNavigationView.selectedItemId = R.id.menuDiscover

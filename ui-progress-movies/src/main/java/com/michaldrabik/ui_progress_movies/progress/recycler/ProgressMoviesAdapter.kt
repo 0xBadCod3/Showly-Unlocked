@@ -55,11 +55,15 @@ class ProgressMoviesAdapter(
     position: Int,
   ) {
     when (val item = asyncDiffer.currentList[position]) {
-      is ProgressMovieListItem.FiltersItem ->
+      is ProgressMovieListItem.FiltersItem -> {
         (holder.itemView as ProgressMoviesFiltersView).bind(item.sortOrder, item.sortType)
-      is ProgressMovieListItem.MovieItem ->
+      }
+      is ProgressMovieListItem.MovieItem -> {
         (holder.itemView as ProgressMoviesItemView).bind(item)
-      else -> throw IllegalStateException()
+      }
+      else -> {
+        throw IllegalStateException()
+      }
     }
   }
 

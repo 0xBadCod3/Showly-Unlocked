@@ -150,13 +150,16 @@ internal class DiscoverShowsCase @Inject constructor(
   private fun List<Show>.sortedBy(order: DiscoverFeed): List<Show> {
     val nowUtc = nowUtc()
     return when (order) {
-      DiscoverFeed.RECENT ->
+      DiscoverFeed.RECENT -> {
         this
           .filter {
             it.firstAired.isNotBlank() &&
               nowUtc.isSameDayOrAfter(it.firstAired.toUtcDateTime() ?: return@filter false)
           }.sortedWith(compareByDescending { it.firstAired })
-      else -> this
+      }
+      else -> {
+        this
+      }
     }
   }
 }

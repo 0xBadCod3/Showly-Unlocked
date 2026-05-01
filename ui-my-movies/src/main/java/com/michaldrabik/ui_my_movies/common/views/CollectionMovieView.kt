@@ -81,7 +81,9 @@ class CollectionMovieView : MovieView<CollectionListItem.MovieItem> {
 
       with(collectionMovieYear) {
         when {
-          isUpcoming -> gone()
+          isUpcoming -> {
+            gone()
+          }
           releaseDate != null -> {
             visible()
             text = item.dateFormat.format(releaseDate)?.capitalizeWords()

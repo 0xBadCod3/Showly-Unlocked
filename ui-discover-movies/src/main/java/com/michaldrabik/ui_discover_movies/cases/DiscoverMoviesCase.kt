@@ -123,12 +123,15 @@ internal class DiscoverMoviesCase @Inject constructor(
   private fun List<Movie>.sortedBy(order: DiscoverFeed): List<Movie> {
     val nowUtcDay = nowUtcDay()
     return when (order) {
-      DiscoverFeed.RECENT ->
+      DiscoverFeed.RECENT -> {
         this
           .filter {
             it.released != null && (it.released!!.isBefore(nowUtcDay) || it.released!!.isEqual(nowUtcDay))
           }.sortedWith(compareByDescending { it.released })
-      else -> this
+      }
+      else -> {
+        this
+      }
     }
   }
 }

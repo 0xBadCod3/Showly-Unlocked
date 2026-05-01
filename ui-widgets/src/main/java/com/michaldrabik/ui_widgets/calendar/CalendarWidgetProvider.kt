@@ -131,10 +131,12 @@ class CalendarWidgetProvider : BaseWidgetProvider() {
 
   private fun toggleCalendarMode(widgetId: Int) {
     when (settingsRepository.widgets.getWidgetCalendarMode(Mode.SHOWS, widgetId)) {
-      CalendarMode.PRESENT_FUTURE ->
+      CalendarMode.PRESENT_FUTURE -> {
         settingsRepository.widgets.setWidgetCalendarMode(Mode.SHOWS, widgetId, CalendarMode.RECENTS)
-      CalendarMode.RECENTS ->
+      }
+      CalendarMode.RECENTS -> {
         settingsRepository.widgets.setWidgetCalendarMode(Mode.SHOWS, widgetId, CalendarMode.PRESENT_FUTURE)
+      }
     }
   }
 
@@ -161,7 +163,9 @@ class CalendarWidgetProvider : BaseWidgetProvider() {
     super.onReceive(context, intent)
     if (intent.action == ACTION_CLICK) {
       when {
-        intent.extras?.containsKey(EXTRA_SHOW_ID) == true -> onListItemClick()
+        intent.extras?.containsKey(EXTRA_SHOW_ID) == true -> {
+          onListItemClick()
+        }
         intent.extras?.containsKey(EXTRA_MODE_CLICK) == true -> {
           val widgetId = intent.extras?.getInt(EXTRA_APPWIDGET_ID) ?: 0
           onHeaderIconClick(widgetId)

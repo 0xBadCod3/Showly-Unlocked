@@ -150,7 +150,9 @@ class EpisodesManager @Inject constructor(
           )
           episodesLocalSource.upsert(listOf(ep))
         }
-        else -> episodesLocalSource.delete(listOf(dbEpisode))
+        else -> {
+          episodesLocalSource.delete(listOf(dbEpisode))
+        }
       }
 
       onEpisodeSet(season, show)

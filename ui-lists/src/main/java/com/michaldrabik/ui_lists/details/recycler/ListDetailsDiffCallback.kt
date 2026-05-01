@@ -57,7 +57,9 @@ class ListDetailsDiffCallback(
           oldItem.spoilers == newItem.spoilers &&
           oldItem.rank == newItem.rank
       }
-      else -> throw IllegalStateException()
+      else -> {
+        throw IllegalStateException()
+      }
     }
   }
 

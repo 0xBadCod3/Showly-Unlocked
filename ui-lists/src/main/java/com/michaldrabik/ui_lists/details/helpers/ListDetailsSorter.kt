@@ -27,32 +27,62 @@ class ListDetailsSorter @Inject constructor() {
 
   private fun sortAscending(sortOrder: SortOrder): Comparator<ListDetailsItem> =
     when (sortOrder) {
-      RANK -> compareBy { it.rank }
-      NAME -> compareBy { getTitle(it) }
-      NEWEST -> compareBy<ListDetailsItem> { it.getYear() }.thenBy { it.getDate() }
-      RATING -> compareBy { it.getRating() }
-      USER_RATING ->
+      RANK -> {
+        compareBy { it.rank }
+      }
+      NAME -> {
+        compareBy { getTitle(it) }
+      }
+      NEWEST -> {
+        compareBy<ListDetailsItem> { it.getYear() }.thenBy { it.getDate() }
+      }
+      RATING -> {
+        compareBy { it.getRating() }
+      }
+      USER_RATING -> {
         compareByDescending<ListDetailsItem> { it.userRating != null }
           .thenBy { it.userRating }
           .thenBy { getTitle(it) }
-      DATE_ADDED -> compareBy { it.listedAt }
-      RANDOM -> compareBy { UUID.randomUUID() }
-      else -> throw IllegalStateException("Invalid sort order")
+      }
+      DATE_ADDED -> {
+        compareBy { it.listedAt }
+      }
+      RANDOM -> {
+        compareBy { UUID.randomUUID() }
+      }
+      else -> {
+        throw IllegalStateException("Invalid sort order")
+      }
     }
 
   private fun sortDescending(sortOrder: SortOrder): Comparator<ListDetailsItem> =
     when (sortOrder) {
-      RANK -> compareByDescending { it.rank }
-      NAME -> compareByDescending { getTitle(it) }
-      NEWEST -> compareByDescending<ListDetailsItem> { it.getYear() }.thenByDescending { it.getDate() }
-      RATING -> compareByDescending { it.getRating() }
-      USER_RATING ->
+      RANK -> {
+        compareByDescending { it.rank }
+      }
+      NAME -> {
+        compareByDescending { getTitle(it) }
+      }
+      NEWEST -> {
+        compareByDescending<ListDetailsItem> { it.getYear() }.thenByDescending { it.getDate() }
+      }
+      RATING -> {
+        compareByDescending { it.getRating() }
+      }
+      USER_RATING -> {
         compareByDescending<ListDetailsItem> { it.userRating != null }
           .thenByDescending { it.userRating }
           .thenBy { getTitle(it) }
-      DATE_ADDED -> compareByDescending { it.listedAt }
-      RANDOM -> compareBy { UUID.randomUUID() }
-      else -> throw IllegalStateException("Invalid sort order")
+      }
+      DATE_ADDED -> {
+        compareByDescending { it.listedAt }
+      }
+      RANDOM -> {
+        compareBy { UUID.randomUUID() }
+      }
+      else -> {
+        throw IllegalStateException("Invalid sort order")
+      }
     }
 
   private fun getTitle(item: ListDetailsItem): String =

@@ -68,7 +68,9 @@ class EpisodeImagesProvider @Inject constructor(
             type = image.type.key,
           )
         }
-        else -> localSource.showImages.insertEpisodeImage(mappers.image.toDatabaseShow(image))
+        else -> {
+          localSource.showImages.insertEpisodeImage(mappers.image.toDatabaseShow(image))
+        }
       }
 
       return@withContext image

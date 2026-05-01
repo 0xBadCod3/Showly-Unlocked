@@ -172,7 +172,9 @@ class TraktSyncViewModel @Inject constructor(
           messageChannel.send(MessageEvent.Error(R.string.errorTraktAuthorization))
           eventChannel.send(TraktSyncUiEvent.Finish)
         }
-        else -> Timber.d("Unsupported sync event")
+        else -> {
+          Timber.d("Unsupported sync event")
+        }
       }
     }
   }

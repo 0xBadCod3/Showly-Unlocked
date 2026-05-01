@@ -131,7 +131,9 @@ class MovieDetailsViewModel @Inject constructor(
         Timber.e(error)
         progressJob.cancel()
         when (ErrorHelper.parse(error)) {
-          is CoroutineCancellation -> rethrowCancellation(error)
+          is CoroutineCancellation -> {
+            rethrowCancellation(error)
+          }
           is ResourceNotFoundError -> {
             // Malformed Trakt data or duplicate show.
             messageChannel.send(MessageEvent.Info(R.string.errorMalformedMovie))
@@ -263,7 +265,9 @@ class MovieDetailsViewModel @Inject constructor(
             eventChannel.send(RemoveFromTrakt(R.id.actionMovieDetailsFragmentToRemoveTraktHidden))
           }
         }
-        else -> error("Unexpected movie state.")
+        else -> {
+          error("Unexpected movie state.")
+        }
       }
       eventChannel.send(RequestWidgetsUpdate)
       announcementManager.refreshMoviesAnnouncements()

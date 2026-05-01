@@ -57,7 +57,9 @@ class CalendarFutureGrouper @Inject constructor() : CalendarGrouper {
         itemDays?.year == nowDays.year -> {
           itemsMap[R.string.textThisYear]?.add(item)
         }
-        else -> itemsMap[R.string.textLater]?.add(item)
+        else -> {
+          itemsMap[R.string.textLater]?.add(item)
+        }
       }
     }
 

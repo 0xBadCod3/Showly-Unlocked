@@ -101,7 +101,9 @@ class ArtGalleryFragment : BaseFragment<ArtGalleryViewModel>(R.layout.fragment_a
           artGalleryPagerIndicator.visible()
           artGalleryPagerIndicator.setViewPager(artGalleryPager)
         }
-        else -> Timber.d("Unused orientation")
+        else -> {
+          Timber.d("Unused orientation")
+        }
       }
     }
   }

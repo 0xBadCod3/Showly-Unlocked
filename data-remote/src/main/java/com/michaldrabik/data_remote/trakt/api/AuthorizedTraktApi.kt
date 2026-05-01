@@ -101,7 +101,7 @@ internal class AuthorizedTraktApi(
 
     return results
   }
-  
+
   override suspend fun fetchSyncWatchedShows(extended: String?): List<SyncItem> {
     var page = 1
     val results = mutableListOf<SyncItem>()

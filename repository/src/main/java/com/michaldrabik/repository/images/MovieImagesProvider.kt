@@ -43,13 +43,16 @@ class MovieImagesProvider @Inject constructor(
     withContext(dispatchers.IO) {
       val image = localSource.movieImages.getByMovieId(movie.ids.tmdb.id, type.key)
       when (image) {
-        null ->
+        null -> {
           if (unavailableCache.contains(movie.ids.trakt)) {
             Image.createUnavailable(type, MOVIE, TMDB)
           } else {
             Image.createUnknown(type, MOVIE, TMDB)
           }
-        else -> mappers.image.fromDatabase(image).copy(type = type)
+        }
+        else -> {
+          mappers.image.fromDatabase(image).copy(type = type)
+        }
       }
     }
 

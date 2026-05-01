@@ -82,15 +82,21 @@ class ProgressWidgetViewsFactory(
     val imageUrl = item.image.fullFileUrl
     val hasAired = item.episode?.hasAired(item.season ?: Season.EMPTY) == true
     val subtitle2 = when {
-      item.episode?.title?.isBlank() == true -> context.getString(R.string.textTba)
+      item.episode?.title?.isBlank() == true -> {
+        context.getString(R.string.textTba)
+      }
       item.translations
         ?.episode
         ?.title
-        ?.isBlank() == false ->
+        ?.isBlank() == false -> {
         item.translations?.episode?.title ?: context.getString(R.string.textTba)
-      item.episode?.title == "Episode ${item.episode?.number}" ->
+      }
+      item.episode?.title == "Episode ${item.episode?.number}" -> {
         String.format(ENGLISH, context.getString(R.string.textEpisode), item.episode?.number)
-      else -> item.episode?.title
+      }
+      else -> {
+        item.episode?.title
+      }
     }
 
     val remoteView = RemoteViews(context.packageName, getItemLayout()).apply {

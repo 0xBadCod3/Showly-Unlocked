@@ -244,9 +244,12 @@ class EpisodeDetailsBottomSheet : BaseBottomSheetFragment(R.layout.view_episode_
           translation.title
         } else if (episodeDetailsTitle.text.isBlank()) {
           when (options.episode.title) {
-            "Episode ${options.episode.number}" ->
+            "Episode ${options.episode.number}" -> {
               String.format(ENGLISH, requireContext().getString(R.string.textEpisode), options.episode.number)
-            else -> options.episode.title
+            }
+            else -> {
+              options.episode.title
+            }
           }
         } else {
           episodeDetailsTitle.text.toString()

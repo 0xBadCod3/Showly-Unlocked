@@ -240,10 +240,18 @@ internal class GetHistoryItemsCase @Inject constructor(
 
         return monthStartUtc..monthEndUtc
       }
-      LAST_30_DAYS -> (nowUtcMillis - 30.days.inWholeMilliseconds)..nowUtcMillis
-      LAST_90_DAYS -> (nowUtcMillis - 90.days.inWholeMilliseconds)..nowUtcMillis
-      LAST_365_DAYS -> (nowUtcMillis - 365.days.inWholeMilliseconds)..nowUtcMillis
-      ALL_TIME -> (nowUtcMillis - 36159.days.inWholeMilliseconds)..nowUtcMillis // Limited to 99 years
+      LAST_30_DAYS -> {
+        (nowUtcMillis - 30.days.inWholeMilliseconds)..nowUtcMillis
+      }
+      LAST_90_DAYS -> {
+        (nowUtcMillis - 90.days.inWholeMilliseconds)..nowUtcMillis
+      }
+      LAST_365_DAYS -> {
+        (nowUtcMillis - 365.days.inWholeMilliseconds)..nowUtcMillis
+      }
+      ALL_TIME -> {
+        (nowUtcMillis - 36159.days.inWholeMilliseconds)..nowUtcMillis
+      } // Limited to 99 years
     }
   }
 }

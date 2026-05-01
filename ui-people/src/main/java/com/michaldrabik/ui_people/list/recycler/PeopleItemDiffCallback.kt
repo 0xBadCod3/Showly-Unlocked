@@ -8,11 +8,15 @@ class PeopleItemDiffCallback : DiffUtil.ItemCallback<PeopleListItem>() {
     oldItem: PeopleListItem,
     newItem: PeopleListItem,
   ) = when {
-    oldItem is PeopleListItem.HeaderItem && newItem is PeopleListItem.HeaderItem -> true
+    oldItem is PeopleListItem.HeaderItem && newItem is PeopleListItem.HeaderItem -> {
+      true
+    }
     oldItem is PeopleListItem.PersonItem && newItem is PeopleListItem.PersonItem -> {
       oldItem.person.ids.tmdb.id == newItem.person.ids.tmdb.id
     }
-    else -> false
+    else -> {
+      false
+    }
   }
 
   override fun areContentsTheSame(
@@ -25,6 +29,8 @@ class PeopleItemDiffCallback : DiffUtil.ItemCallback<PeopleListItem>() {
     oldItem is PeopleListItem.PersonItem && newItem is PeopleListItem.PersonItem -> {
       oldItem == newItem
     }
-    else -> false
+    else -> {
+      false
+    }
   }
 }

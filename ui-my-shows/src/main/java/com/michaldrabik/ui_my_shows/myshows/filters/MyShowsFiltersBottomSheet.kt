@@ -109,7 +109,9 @@ internal class MyShowsFiltersBottomSheet : BaseBottomSheetFragment(R.layout.view
         setFragmentResult(REQUEST_MY_SHOWS_FILTERS, Bundle.EMPTY)
         closeSheet()
       }
-      is CloseFilters -> closeSheet()
+      is CloseFilters -> {
+        closeSheet()
+      }
     }
   }
 }

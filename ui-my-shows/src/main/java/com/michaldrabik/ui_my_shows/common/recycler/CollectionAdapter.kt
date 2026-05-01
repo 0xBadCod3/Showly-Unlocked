@@ -75,12 +75,14 @@ class CollectionAdapter(
     position: Int,
   ) {
     when (val item = asyncDiffer.currentList[position]) {
-      is FiltersItem ->
+      is FiltersItem -> {
         (holder.itemView as CollectionShowFiltersView).bind(item, listViewMode)
-      is ShowItem ->
+      }
+      is ShowItem -> {
         when (listViewMode) {
           LIST_NORMAL -> (holder.itemView as CollectionShowView).bind(item)
         }
+      }
     }
   }
 

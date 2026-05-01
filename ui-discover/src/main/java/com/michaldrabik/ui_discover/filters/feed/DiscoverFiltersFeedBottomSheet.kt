@@ -91,7 +91,9 @@ internal class DiscoverFiltersFeedBottomSheet : BaseBottomSheetFragment(R.layout
         setFragmentResult(REQUEST_DISCOVER_FILTERS, Bundle.EMPTY)
         closeSheet()
       }
-      is CloseFilters -> closeSheet()
+      is CloseFilters -> {
+        closeSheet()
+      }
     }
   }
 }

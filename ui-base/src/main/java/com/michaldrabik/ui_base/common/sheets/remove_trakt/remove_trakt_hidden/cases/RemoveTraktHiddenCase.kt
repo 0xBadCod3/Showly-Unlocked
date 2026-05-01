@@ -36,7 +36,9 @@ class RemoveTraktHiddenCase @Inject constructor(
         val request = SyncExportRequest(movies = items)
         remoteSource.deleteHiddenMovie(request)
       }
-      else -> throw IllegalStateException()
+      else -> {
+        throw IllegalStateException()
+      }
     }
   }
 }
