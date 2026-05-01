@@ -1,2 +1,2 @@
-* Updated backup rules for Android 12+
-* Updated internal dependencies
+* Updated internal data endpoints
+* Keep app awake if Trakt sync is running in the foreground
