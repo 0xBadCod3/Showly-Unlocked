@@ -112,9 +112,6 @@ class SettingsGeneralFragment : BaseFragment<SettingsGeneralViewModel>(R.layout.
   private fun renderTheme(theme: AppTheme) {
     with(binding) {
       settingsThemeValue.setText(theme.displayName)
-      settingsTheme.onClick {
-        onPremiumAction(tag)
-      }
     }
   }
 

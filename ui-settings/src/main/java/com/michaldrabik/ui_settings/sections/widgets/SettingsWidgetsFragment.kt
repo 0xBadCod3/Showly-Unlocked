@@ -2,8 +2,10 @@ package com.michaldrabik.ui_settings.sections.widgets
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.michaldrabik.ui_base.BaseFragment
 import com.michaldrabik.ui_base.utilities.extensions.launchAndRepeatStarted
 import com.michaldrabik.ui_base.utilities.extensions.onClick
@@ -12,6 +14,8 @@ import com.michaldrabik.ui_model.PremiumFeature
 import com.michaldrabik.ui_navigation.java.NavigationArgs.ARG_ITEM
 import com.michaldrabik.ui_settings.R
 import com.michaldrabik.ui_settings.databinding.FragmentSettingsWidgetsBinding
+import com.michaldrabik.ui_settings.helpers.AppTheme
+import com.michaldrabik.ui_settings.helpers.WidgetTransparency
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -46,16 +50,24 @@ class SettingsWidgetsFragment : BaseFragment<SettingsWidgetsViewModel>(R.layout.
         settings?.let {
           settingsWidgetsLabelsSwitch.isChecked = it.widgetsShowLabel
         }
-        themeWidgets?.let {
-          settingsWidgetsThemeValue.setText(it.displayName)
+        themeWidgets?.let { theme ->
+          settingsWidgetsThemeValue.setText(theme.displayName)
           settingsWidgetsTheme.onClick { view ->
-            openPremiumScreen(view.tag)
+            if (isPremium) {
+              showWidgetThemeDialog(theme)
+            } else {
+              openPremiumScreen(view.tag)
+            }
           }
         }
-        widgetsTransparency.let {
-          settingsWidgetsTransparencyValue.setText(it.displayName)
+        widgetsTransparency.let { transparency ->
+          settingsWidgetsTransparencyValue.setText(transparency.displayName)
           settingsWidgetsTransparency.onClick { view ->
-            openPremiumScreen(view.tag)
+            if (isPremium) {
+              showWidgetTransparencyDialog(transparency)
+            } else {
+              openPremiumScreen(view.tag)
+            }
           }
         }
         isPremium.let {
@@ -70,6 +82,34 @@ class SettingsWidgetsFragment : BaseFragment<SettingsWidgetsViewModel>(R.layout.
         }
       }
     }
+  }
+
+  private fun showWidgetThemeDialog(currentTheme: AppTheme) {
+    val options = AppTheme.values()
+    val selected = options.indexOf(currentTheme)
+
+    MaterialAlertDialogBuilder(requireContext(), R.style.AlertDialog)
+      .setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.bg_dialog))
+      .setSingleChoiceItems(options.map { getString(it.displayName) }.toTypedArray(), selected) { dialog, index ->
+        if (index != selected) {
+          viewModel.setWidgetTheme(options[index], requireAppContext())
+        }
+        dialog.dismiss()
+      }.show()
+  }
+
+  private fun showWidgetTransparencyDialog(currentTransparency: WidgetTransparency) {
+    val options = WidgetTransparency.values()
+    val selected = options.indexOf(currentTransparency)
+
+    MaterialAlertDialogBuilder(requireContext(), R.style.AlertDialog)
+      .setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.bg_dialog))
+      .setSingleChoiceItems(options.map { getString(it.displayName) }.toTypedArray(), selected) { dialog, index ->
+        if (index != selected) {
+          viewModel.setWidgetTransparency(options[index], requireAppContext())
+        }
+        dialog.dismiss()
+      }.show()
   }
 
   private fun openPremiumScreen(tag: Any?) {

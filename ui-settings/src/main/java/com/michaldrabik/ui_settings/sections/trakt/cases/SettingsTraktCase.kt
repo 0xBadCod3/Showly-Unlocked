@@ -40,6 +40,14 @@ class SettingsTraktCase @Inject constructor(
     }
   }
 
+  suspend fun enableTraktQuickRate(enable: Boolean) {
+    val settings = settingsRepository.load()
+    settings.let {
+      val new = it.copy(traktQuickRateEnabled = enable)
+      settingsRepository.update(new)
+    }
+  }
+
   suspend fun setTraktSyncSchedule(schedule: TraktSyncSchedule) {
     val settings = settingsRepository.load()
     settings.let {

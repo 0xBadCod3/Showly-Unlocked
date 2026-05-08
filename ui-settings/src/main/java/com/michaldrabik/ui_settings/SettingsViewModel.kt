@@ -18,7 +18,7 @@ class SettingsViewModel @Inject constructor() :
   ViewModel(),
   ChannelsDelegate by DefaultChannelsDelegate() {
 
-    private val premiumState = MutableStateFlow(false)
+    private val premiumState = MutableStateFlow(true)
     private val filterState = MutableStateFlow<SettingsFilter?>(null)
 
     fun setFilter(filter: SettingsFilter?) {

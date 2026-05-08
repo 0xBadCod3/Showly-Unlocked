@@ -164,10 +164,7 @@ class ListDetailsFragment :
         translationY = headerTranslation
       }
       fragmentListDetailsManageButton.onClick { toggleReorderMode() }
-      fragmentListDetailsViewModeButton.onClick {
-        val args = bundleOf(ARG_ITEM to PremiumFeature.VIEW_TYPES)
-        navigateToSafe(R.id.actionListDetailsFragmentToPremium, args)
-      }
+      fragmentListDetailsViewModeButton.onClick { }
     }
   }
 

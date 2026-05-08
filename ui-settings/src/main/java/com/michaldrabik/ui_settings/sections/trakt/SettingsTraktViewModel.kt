@@ -38,7 +38,7 @@ class SettingsTraktViewModel @Inject constructor(
 
   private val settingsState = MutableStateFlow<Settings?>(null)
 
-  private val premiumState = MutableStateFlow(false)
+  private val premiumState = MutableStateFlow(true)
   private val signedInTraktState = MutableStateFlow(false)
   private val signingInState = MutableStateFlow(false)
   private val traktNameState = MutableStateFlow("")
@@ -107,6 +107,13 @@ class SettingsTraktViewModel @Inject constructor(
   fun enableQuickRemove(enable: Boolean) {
     viewModelScope.launch {
       traktCase.enableTraktQuickRemove(enable)
+      refreshSettings()
+    }
+  }
+
+  fun enableQuickRate(enable: Boolean) {
+    viewModelScope.launch {
+      traktCase.enableTraktQuickRate(enable)
       refreshSettings()
     }
   }

@@ -248,10 +248,7 @@ class FollowedShowsFragment :
   }
 
   fun openPremium() {
-    hideNavigation()
-    exitSearch()
-    val args = bundleOf(ARG_ITEM to PremiumFeature.VIEW_TYPES)
-    navigateToSafe(R.id.actionFollowedShowsFragmentToPremium, args)
+    // No-op. Feature unlocked.
   }
 
   private fun openSettings() {

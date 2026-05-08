@@ -5,6 +5,8 @@ import com.michaldrabik.common.dispatchers.CoroutineDispatchers
 import com.michaldrabik.repository.settings.SettingsRepository
 import com.michaldrabik.ui_base.common.WidgetsProvider
 import com.michaldrabik.ui_model.Settings
+import com.michaldrabik.ui_settings.helpers.AppTheme
+import com.michaldrabik.ui_settings.helpers.WidgetTransparency
 import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -27,6 +29,36 @@ class SettingsWidgetsMainCase @Inject constructor(
     val settings = settingsRepository.load()
     settings.let {
       val new = it.copy(widgetsShowLabel = enable)
+      settingsRepository.update(new)
+    }
+    (context.applicationContext as WidgetsProvider).run {
+      requestShowsWidgetsUpdate()
+      requestMoviesWidgetsUpdate()
+    }
+  }
+
+  suspend fun setWidgetTransparency(
+    transparency: WidgetTransparency,
+    context: Context,
+  ) {
+    val settings = settingsRepository.load()
+    settings.let {
+      val new = it.copy(widgetsTransparency = transparency)
+      settingsRepository.update(new)
+    }
+    (context.applicationContext as WidgetsProvider).run {
+      requestShowsWidgetsUpdate()
+      requestMoviesWidgetsUpdate()
+    }
+  }
+
+  suspend fun setWidgetTheme(
+    theme: AppTheme,
+    context: Context,
+  ) {
+    val settings = settingsRepository.load()
+    settings.let {
+      val new = it.copy(widgetsTheme = theme)
       settingsRepository.update(new)
     }
     (context.applicationContext as WidgetsProvider).run {

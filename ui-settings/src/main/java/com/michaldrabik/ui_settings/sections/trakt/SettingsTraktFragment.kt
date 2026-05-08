@@ -90,7 +90,11 @@ class SettingsTraktFragment :
         settingsTraktQuickRateSwitch.isChecked = settings?.traktQuickRateEnabled ?: false
         settingsTraktQuickRate.alpha = if (isPremium) 1F else 0.5F
         settingsTraktQuickRate.onClick { view ->
-          openPremiumScreen(view.tag)
+          if (isPremium) {
+            viewModel.enableQuickRate(!settingsTraktQuickRateSwitch.isChecked)
+          } else {
+            openPremiumScreen(view.tag)
+          }
         }
         if (isPremium) {
           settingsTraktQuickRateTitle.setCompoundDrawables(null, null, null, null)

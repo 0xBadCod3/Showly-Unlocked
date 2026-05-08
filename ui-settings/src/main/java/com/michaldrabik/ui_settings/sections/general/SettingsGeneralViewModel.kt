@@ -36,7 +36,7 @@ class SettingsGeneralViewModel @Inject constructor(
   private val dateFormatState = MutableStateFlow<AppDateFormat?>(null)
   private val moviesEnabledState = MutableStateFlow(true)
   private val streamingsEnabledState = MutableStateFlow(true)
-  private val premiumState = MutableStateFlow(false)
+  private val premiumState = MutableStateFlow(true)
   private val restartAppState = MutableStateFlow(false)
   private val progressTypeState = MutableStateFlow<ProgressNextEpisodeType?>(null)
   private val progressDateSelectionState = MutableStateFlow<ProgressDateSelectionType?>(null)
