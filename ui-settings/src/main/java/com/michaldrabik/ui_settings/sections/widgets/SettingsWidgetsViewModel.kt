@@ -66,8 +66,8 @@ class SettingsWidgetsViewModel @Inject constructor(
   private suspend fun refreshSettings() {
     val settings = mainCase.getSettings()
     settingsState.value = settings
-    widgetThemeState.value = settings.widgetsTheme
-    widgetTransparencyState.value = settings.widgetsTransparency
+    widgetThemeState.value = mainCase.getWidgetTheme()
+    widgetTransparencyState.value = mainCase.getWidgetTransparency()
   }
 
   val uiState = combine(
