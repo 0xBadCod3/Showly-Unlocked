@@ -1,0 +1,58 @@
+name: Build Release APK
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: Build Release APK
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v6
+
+      - name: Setup JDK 21
+        uses: actions/setup-java@v5
+        with:
+          java-version: 21
+          distribution: temurin
+          cache: gradle
+
+      - name: Create Generic Signing Configuration
+        run: |
+          # Create keystore.properties
+          cat <<EOF > app/keystore.properties
+          storePassword=android
+          keyAlias=androiddebugkey
+          keyPassword=android
+          EOF
+          
+          # Generate a generic debug keystore
+          keytool -genkey -v \
+            -keystore app/keystore \
+            -alias androiddebugkey \
+            -storepass android \
+            -keypass android \
+            -keyalg RSA \
+            -keysize 2048 \
+            -validity 10000 \
+            -dname "CN=Android Debug,O=Android,C=US"
+          
+          # Create dummy google-services.json
+          echo "{}" > app/google-services.json
+          
+          # Create an empty local.properties
+          touch local.properties
+
+      - name: Build with Gradle
+        run: ./gradlew :app:assembleRelease --stacktrace
+
+      - name: Upload Release APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: showly-release-apk
+          path: app/build/outputs/apk/release/*.apk
